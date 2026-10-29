@@ -106,16 +106,3 @@ public:
         return "Error, Sender Number and Reciver Number is Equal\n-----------------\n";
     }
 };
-int main() {
-    Bank myBank;
-    Account acc1("Ahmed", 101, 1000);
-    Account acc2("Sara", 102, 500);
-    cout << myBank.AddAccount(acc1);
-    cout << myBank.AddAccount(acc2);
-
-    cout << acc1.transfer(acc2, 300);
-
-    cout << myBank.AccountFind(101);
-    cout << myBank.AccountFind(102);
-    return 0;
-}
