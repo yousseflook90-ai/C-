@@ -37,7 +37,6 @@ public:
         else if (amount > 0 && amount <= this->balance) {
             receiver.deposit(amount);
             this->withdraw(amount);
-            return "Transfer Successfully\n-----------------\n";
         }
         return "Transfer Error\n-----------------\n";
     }
@@ -97,12 +96,28 @@ public:
                     receiver_exists = true;
                 }
             }
-            if (sender_exists && receiver_exists) {
+            if ((sender_exists && receiver_exists) && (amount > 0 && amount <= sender->getBalance())) {
                 sender->transfer(*receiver, amount);
                 return "Transfer Successfully\n-----------------\n";
+            }
+            else if (!((amount > 0 && amount <= sender->getBalance()))) {
+                return "Transfer Error\n-----------------\n";
             }
             return "Account/Accounts Not Found\n-----------------\n";
         }
         return "Error, Sender Number and Reciver Number is Equal\n-----------------\n";
     }
 };
+int main() {
+    Bank myBank;
+    Account acc1("Ahmed", 101, 1000);
+    Account acc2("Sara", 102, 500);
+    cout << myBank.AddAccount(acc1);
+    cout << myBank.AddAccount(acc2);
+
+    cout << myBank.transfer_between_accounts(acc1.getNumber(), acc2.getNumber(), 1500);
+
+    cout << myBank.AccountFind(101);
+    cout << myBank.AccountFind(102);
+    return 0;
+}
